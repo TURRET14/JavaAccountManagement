@@ -5,8 +5,8 @@ import java.util.Date;
 public class Account {
     private int ID = 0;
     private double Balance = 0;
-    private double AnnualInterestRate = 0;
-    private Date DateCreated = new Date(5);
+    private double AnnualInterestRate = 4.5;
+    private Date DateCreated = new Date();
 
     public Account() {}
     public Account(int ID, int Balance) {
@@ -44,7 +44,7 @@ public class Account {
     }
 
     public boolean Withdraw(double Amount) {
-        if (Amount > Balance) {
+        if (Amount > Balance || Amount <= 0) {
             return false;
         }
         else {
@@ -53,7 +53,14 @@ public class Account {
         }
     }
 
-    public void Deposit(double Amount) {
-        Balance = Balance + Amount;
+    public boolean Deposit(double Amount) {
+        if (Amount <= 0) {
+            return false;
+        }
+        else {
+            Balance = Balance + Amount;
+            return true;
+        }
+
     }
 }

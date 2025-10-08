@@ -1,15 +1,163 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import Classes.Account;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        ArrayList<Account> AccountsList = new ArrayList<>();
+        while (true) {
+            System.out.println("Что вы хотите сделать?");
+            System.out.println("1. Создать счет.");
+            System.out.println("2. Использовать счет.");
+            System.out.println("3. Выйти.");
+            int ChosenMenuOption = 0;
+            while (true) {
+                Scanner InputScanner = new Scanner(System.in);
+                System.out.print("Введите номер варианта: ");
+                try {
+                    ChosenMenuOption = InputScanner.nextInt();
+                    if (!(ChosenMenuOption >= 1 && ChosenMenuOption <= 3)) {
+                        System.out.println("Ошибка: Такого варианта нет!");
+                    }
+                    else {
+                        break;
+                    }
+                }
+                catch(Exception Ex) {
+                    System.out.println("Ошибка: Вариант должен быть целым числом!");
+                }
+            }
+            if (ChosenMenuOption == 1) {
+                Account NewAccount = new Account();
+                while (true) {
+                    Scanner InputScanner = new Scanner(System.in);
+                    System.out.print("Введите ID Счета: ");
+                    int ID = 0;
+                    boolean IsIDTaken = false;
+                    try {
+                        ID = InputScanner.nextInt();
+                        if (ID < 0) {
+                            System.out.println("Ошибка: Идентификатор не может быть отрицательным!");
+                            continue;
+                        }
+                        for (Account CurrentAccount: AccountsList) {
+                            if (CurrentAccount.GetID() == ID) {
+                                System.out.println("Ошибка: Этот ID Занят!");
+                                IsIDTaken = true;
+                                break;
+                            }
+                        }
+                        if (!IsIDTaken) {
+                            NewAccount.SetID(ID);
+                            break;
+                        }
+                    }
+                    catch (Exception Ex) {
+                        System.out.println("Ошибка: Идентификатор должен быть целым положительным числом!");
+                    }
+                }
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+                while (true) {
+                    Scanner InputScanner = new Scanner(System.in);
+                    System.out.print("Введите баланс: ");
+                    double Balance = 0;
+                    try {
+                        Balance = InputScanner.nextDouble();
+                        if (Balance < 0) {
+                            System.out.println("Ошибка: Баланс не может быть отрицательным!");
+                        }
+                        else {
+                            NewAccount.SetBalance(Balance);
+                            break;
+                        }
+                    }
+                    catch (Exception Ex) {
+                        System.out.println("Ошибка: Баланс должен быть положительным числом!");
+                    }
+                }
+
+                AccountsList.add(NewAccount);
+                System.out.println("Аккаунт успешно создан!");
+            }
+            else if (ChosenMenuOption == 2) {
+                int SelectedAccountID = 0;
+                Account SelectedAccount = null;
+                while (true) {
+                    Scanner InputScanner = new Scanner(System.in);
+                    System.out.print("Введите ID Счета: ");
+                    boolean IsAccountFound = false;
+                    try {
+                        SelectedAccountID = InputScanner.nextInt();
+                        for (Account CurrentAccount : AccountsList) {
+                            if (CurrentAccount.GetID() == SelectedAccountID) {
+                                SelectedAccount = CurrentAccount;
+                                IsAccountFound = true;
+                                break;
+                            }
+                        }
+                        if (!IsAccountFound) {
+                            System.out.println("Ошибка: Такого аккаунта нет!");
+                        }
+                        else {
+                            break;
+                        }
+                    }
+                    catch (Exception Ex) {
+                        System.out.println("Ошибка: Идентификатор должен быть целым положительным числом!");
+                    }
+                }
+                System.out.println("Что вы хотите сделать?");
+                System.out.println("1. Получить идентификатор счета.");
+                System.out.println("2. Получить баланс счета.");
+                System.out.println("3. Получить годовую процентную ставку.");
+                System.out.println("4. Получить сумму ежемесячных процентов.");
+                System.out.println("5. Получить дату создания счета.");
+                System.out.println("6. Выйти в главное меню.");
+                int ChosenAccountOption = 0;
+                while (true) {
+                    Scanner InputScanner = new Scanner(System.in);
+                    System.out.print("Введите номер варианта: ");
+                    try {
+                        ChosenAccountOption = InputScanner.nextInt();
+                        if (!(ChosenAccountOption >= 1 && ChosenMenuOption <= 6)) {
+                            System.out.println("Ошибка: Такого варианта нет!");
+                        }
+                        else {
+                            switch (ChosenAccountOption) {
+                                case 1:
+                                    System.out.println(SelectedAccount.GetID());
+                                    break;
+                                case 2:
+                                    System.out.println(SelectedAccount.GetBalance());
+                                    break;
+                                case 3:
+                                    System.out.println(SelectedAccount.GetAnnualInterestRate());
+                                    break;
+                                case 4:
+                                    System.out.println(SelectedAccount.GetMonthlyInterest());
+                                    break;
+                                case 5:
+                                    System.out.println(SelectedAccount.GetDateCreated());
+                                    break;
+                                case 6:
+                                    break;
+                            }
+                            if (ChosenAccountOption == 6) {
+                                break;
+                            }
+                        }
+
+                    }
+                    catch (Exception Ex) {
+                        System.out.println("Ошибка: Вариант должен быть целым числом!");
+                    }
+                }
+            }
+            else {
+                break;
+            }
         }
     }
 }
