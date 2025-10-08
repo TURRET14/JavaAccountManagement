@@ -108,6 +108,7 @@ public class Main {
                         System.out.println("Ошибка: Идентификатор должен быть целым положительным числом!");
                     }
                 }
+                System.out.println();
                 System.out.println("Что вы хотите сделать?");
                 System.out.println("1. Получить идентификатор счета.");
                 System.out.println("2. Получить баланс счета.");
@@ -141,10 +142,9 @@ public class Main {
                                 case 5:
                                     System.out.println("Дата создания: " + SelectedAccount.GetDateCreated());
                                     break;
-                                case 6:
-                                    break;
                             }
                             if (ChosenAccountOption == 6) {
+                                System.out.println();
                                 break;
                             }
                         }
@@ -156,6 +156,7 @@ public class Main {
                 }
             }
             else {
+                System.out.println();
                 break;
             }
         }
