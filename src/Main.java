@@ -80,6 +80,7 @@ public class Main {
 
                 AccountsList.add(NewAccount);
                 System.out.println("Аккаунт успешно создан!");
+                System.out.println();
             }
             else if (ChosenMenuOption == 2) {
                 int SelectedAccountID = 0;
