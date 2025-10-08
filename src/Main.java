@@ -127,19 +127,19 @@ public class Main {
                         else {
                             switch (ChosenAccountOption) {
                                 case 1:
-                                    System.out.println(SelectedAccount.GetID());
+                                    System.out.println("ID: " + SelectedAccount.GetID());
                                     break;
                                 case 2:
-                                    System.out.println(SelectedAccount.GetBalance());
+                                    System.out.println("Баланс: " +SelectedAccount.GetBalance());
                                     break;
                                 case 3:
-                                    System.out.println(SelectedAccount.GetAnnualInterestRate());
+                                    System.out.println("Годовая процентная ставка: " + SelectedAccount.GetAnnualInterestRate());
                                     break;
                                 case 4:
-                                    System.out.println(SelectedAccount.GetMonthlyInterest());
+                                    System.out.println("Сумма ежемесячных процентов: " + SelectedAccount.GetMonthlyInterest());
                                     break;
                                 case 5:
-                                    System.out.println(SelectedAccount.GetDateCreated());
+                                    System.out.println("Дата создания: " + SelectedAccount.GetDateCreated());
                                     break;
                                 case 6:
                                     break;
