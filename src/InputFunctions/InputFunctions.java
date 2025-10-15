@@ -3,7 +3,7 @@ package InputFunctions;
 import java.util.Scanner;
 
 public class InputFunctions {
-    int GetIntInput(int Min, int Max, String InputText) {
+    static int GetIntInput(int Min, int Max, String InputText) {
         while (true) {
             Scanner InputScanner = new Scanner(System.in);
             int IntInput = 0;
@@ -29,7 +29,15 @@ public class InputFunctions {
         }
     }
 
-    double GetDoubleInput(double Min, double Max, String InputText) {
+    static int GetIntInputOnlyMin(int Min, String InputText) {
+        return GetIntInput(Min, Integer.MAX_VALUE, InputText);
+    }
+
+    static int GetIntInputOnlyMax(int Max, String InputText) {
+        return GetIntInput(Integer.MIN_VALUE, Max, InputText);
+    }
+
+    static double GetDoubleInput(double Min, double Max, String InputText) {
         while (true) {
             Scanner InputScanner = new Scanner(System.in);
             double DoubleInput = 0;
@@ -53,5 +61,13 @@ public class InputFunctions {
                 return DoubleInput;
             }
         }
+    }
+
+    static double GetDoubleInputOnlyMin(double Min, String InputText) {
+        return GetDoubleInput(Min, Integer.MAX_VALUE, InputText);
+    }
+
+    static double GetDoubleInputOnlyMax(double Max, String InputText) {
+        return GetDoubleInput(Integer.MIN_VALUE, Max, InputText);
     }
 }
