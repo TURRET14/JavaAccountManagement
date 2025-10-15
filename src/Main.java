@@ -116,14 +116,17 @@ public class Main {
                 System.out.println("3. Получить годовую процентную ставку.");
                 System.out.println("4. Получить сумму ежемесячных процентов.");
                 System.out.println("5. Получить дату создания счета.");
-                System.out.println("6. Выйти в главное меню.");
+                System.out.println("6. Изменить идентификатор счета.");
+                System.out.println("7. Снять деньги со счета.");
+                System.out.println("8. Пополнить счет.");
+                System.out.println("9. Выйти в главное меню.");
                 int ChosenAccountOption = 0;
                 while (true) {
                     Scanner InputScanner = new Scanner(System.in);
                     System.out.print("Введите номер варианта: ");
                     try {
                         ChosenAccountOption = InputScanner.nextInt();
-                        if (!(ChosenAccountOption >= 1 && ChosenMenuOption <= 6)) {
+                        if (!(ChosenAccountOption >= 1 && ChosenAccountOption <= 9)) {
                             System.out.println("Ошибка: Такого варианта нет!");
                         }
                         else {
@@ -143,13 +146,75 @@ public class Main {
                                 case 5:
                                     System.out.println("Дата создания: " + SelectedAccount.GetDateCreated());
                                     break;
+                                case 6:
+                                    Scanner IDScanner = new Scanner(System.in);
+                                    System.out.print("Введите ID Счета: ");
+                                    int ID = 0;
+                                    boolean IsIDTaken = false;
+                                    try {
+                                        ID = IDScanner.nextInt();
+                                        if (ID < 0) {
+                                            System.out.println("Ошибка: Идентификатор не может быть отрицательным!");
+                                            continue;
+                                        }
+                                        for (Account CurrentAccount: AccountsList) {
+                                            if (CurrentAccount.GetID() == ID) {
+                                                System.out.println("Ошибка: Этот ID Занят!");
+                                                IsIDTaken = true;
+                                                break;
+                                            }
+                                        }
+                                        if (!IsIDTaken) {
+                                            SelectedAccount.SetID(ID);
+                                            break;
+                                        }
+                                    }
+                                    catch (Exception Ex) {
+                                        System.out.println("Ошибка: Идентификатор должен быть целым положительным числом!");
+                                    }
+                                    break;
+                                case 7:
+                                    Scanner SumScanner = new Scanner(System.in);
+                                    System.out.print("Введите сумму: ");
+                                    double Sum = 0;
+                                    try {
+                                        Sum = SumScanner.nextDouble();
+                                        if (Sum < 0) {
+                                            System.out.println("Ошибка: Сумма не может быть отрицательной!");
+                                        }
+                                        else {
+                                            if (!SelectedAccount.Withdraw(Sum)) {
+                                                System.out.println("Ошибка: Сумма слишком большая!");
+                                            }
+                                        }
+                                    }
+                                    catch (Exception Ex) {
+                                        System.out.println("Ошибка: Сумма должна быть положительным числом!");
+                                    }
+                                    break;
+                                case 8:
+                                    Scanner PutScanner = new Scanner(System.in);
+                                    System.out.print("Введите сумму: ");
+                                    double Put = 0;
+                                    try {
+                                        Put = PutScanner.nextDouble();
+                                        if (Put < 0) {
+                                            System.out.println("Ошибка: Сумма не может быть отрицательной!");
+                                        }
+                                        else {
+                                            SelectedAccount.Deposit(Put);
+                                        }
+                                    }
+                                    catch (Exception Ex) {
+                                        System.out.println("Ошибка: Сумма должна быть положительным числом!");
+                                    }
+                                    break;
                             }
-                            if (ChosenAccountOption == 6) {
+                            if (ChosenAccountOption == 9) {
                                 System.out.println();
                                 break;
                             }
                         }
-
                     }
                     catch (Exception Ex) {
                         System.out.println("Ошибка: Вариант должен быть целым числом!");
