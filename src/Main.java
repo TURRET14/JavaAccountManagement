@@ -80,7 +80,6 @@ public class Main {
 
                 AccountsList.add(NewAccount);
                 System.out.println("Аккаунт успешно создан!");
-                System.out.println();
             }
             else if (ChosenMenuOption == 2) {
                 int SelectedAccountID = 0;
@@ -109,7 +108,6 @@ public class Main {
                         System.out.println("Ошибка: Идентификатор должен быть целым положительным числом!");
                     }
                 }
-                System.out.println();
                 System.out.println("Что вы хотите сделать?");
                 System.out.println("1. Получить идентификатор счета.");
                 System.out.println("2. Получить баланс счета.");
@@ -211,7 +209,6 @@ public class Main {
                                     break;
                             }
                             if (ChosenAccountOption == 9) {
-                                System.out.println();
                                 break;
                             }
                         }
@@ -222,7 +219,6 @@ public class Main {
                 }
             }
             else {
-                System.out.println();
                 break;
             }
         }
