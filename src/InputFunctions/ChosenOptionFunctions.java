@@ -1,6 +1,7 @@
 package InputFunctions;
 
 import Classes.Account;
+import Classes.Transaction;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -74,9 +75,10 @@ public class ChosenOptionFunctions {
         System.out.println("8. Изменить имя.");
         System.out.println("9. Снять деньги со счета.");
         System.out.println("10. Пополнить счет.");
-        System.out.println("11. Выйти в главное меню.");
+        System.out.println("11. Посмотреть список транзакций.");
+        System.out.println("12. Выйти в главное меню.");
         while (true) {
-            int ChosenAccountOption = GetIntInput(1, 11, "Введите номер варианта: ");
+            int ChosenAccountOption = GetIntInput(1, 12, "Введите номер варианта: ");
             switch (ChosenAccountOption) {
                 case 1:
                     System.out.println("ID: " + SelectedAccount.GetID());
@@ -118,6 +120,26 @@ public class ChosenOptionFunctions {
                     SelectedAccount.Deposit(SumToDeposit);
                     break;
                 case 11:
+                    ArrayList<Transaction> Transactions = SelectedAccount.GetTransactions();
+                    for (int Count = 0; Count < Transactions.size(); Count = Count + 1) {
+                        System.out.println("Транзакция " + (Count + 1) + " :");
+                        System.out.println("Дата: " + Transactions.get(Count).GetDate());
+                        String Type;
+                        if (Transactions.get(Count).GetIsWithdrawal()) {
+                            Type = "Списание";
+                        }
+                        else {
+                            Type = "Зачисление";
+                        }
+                        System.out.println("Тип: " + Type);
+                        System.out.println("Сумма: " + Transactions.get(Count).GetAmount());
+                        System.out.println("Баланс: " + Transactions.get(Count).GetBalance());
+                        System.out.println("Описание: " + Transactions.get(Count).GetDescription());
+                        if (Count != Transactions.size() - 1) {
+                            System.out.println("----------");
+                        }
+                    }
+                case 12:
                     return;
             }
         }

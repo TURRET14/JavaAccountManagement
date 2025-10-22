@@ -1,5 +1,7 @@
 package Classes;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Account {
@@ -8,6 +10,7 @@ public class Account {
     private double Balance = 0;
     private double AnnualInterestRate = 4.5;
     private Date DateCreated = new Date();
+    private ArrayList<Transaction> Transactions = new ArrayList<>();
 
     public Account() {}
     public Account(int ID, int Balance, String Name) {
@@ -54,6 +57,7 @@ public class Account {
         }
         else {
             Balance = Balance - Amount;
+            Transactions.add(new Transaction(true, Amount, Balance, "Списание со счета"));
             return true;
         }
     }
@@ -64,8 +68,12 @@ public class Account {
         }
         else {
             Balance = Balance + Amount;
+            Transactions.add(new Transaction(false, Amount, Balance, "Начисление на счет"));
             return true;
         }
+    }
 
+    public ArrayList<Transaction> GetTransactions() {
+        return Transactions;
     }
 }
