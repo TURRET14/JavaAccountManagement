@@ -4,14 +4,16 @@ import java.util.Date;
 
 public class Account {
     private int ID = 0;
+    private String Name;
     private double Balance = 0;
     private double AnnualInterestRate = 4.5;
     private Date DateCreated = new Date();
 
     public Account() {}
-    public Account(int ID, int Balance) {
+    public Account(int ID, int Balance, String Name) {
         this.ID = ID;
         this.Balance = Balance;
+        this.Name = Name;
     }
 
     public int GetID() {
@@ -20,6 +22,9 @@ public class Account {
     public void SetID(int ID) {
         this.ID = ID;
     }
+
+    public String GetName() { return Name; }
+    public void SetName(String Name) { this.Name = Name; }
 
     public double GetBalance() {
         return Balance;

@@ -70,4 +70,18 @@ public class InputFunctions {
     static double GetDoubleInputOnlyMax(double Max, String InputText) {
         return GetDoubleInput(Integer.MIN_VALUE, Max, InputText);
     }
+
+    static String GetStringInput(String InputText) {
+        while (true) {
+            Scanner InputScanner = new Scanner(System.in);
+            System.out.print(InputText);
+            String StringInput = InputScanner.nextLine();
+            if (StringInput != null && !StringInput.isBlank()) {
+                return StringInput;
+            }
+            else {
+                System.out.println("Ошибка: Строка не может быть пустой!");
+            }
+        }
+    }
 }

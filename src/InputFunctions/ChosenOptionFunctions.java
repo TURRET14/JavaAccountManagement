@@ -41,6 +41,9 @@ public class ChosenOptionFunctions {
             }
         }
 
+        String Name = GetStringInput("Введите имя: ");
+        NewAccount.SetName(Name);
+
         double Balance = GetDoubleInputOnlyMin(0, "Введите баланс: ");
         NewAccount.SetBalance(Balance);
 
@@ -62,33 +65,37 @@ public class ChosenOptionFunctions {
 
         System.out.println("Что вы хотите сделать?");
         System.out.println("1. Получить идентификатор счета.");
-        System.out.println("2. Получить баланс счета.");
-        System.out.println("3. Получить годовую процентную ставку.");
-        System.out.println("4. Получить сумму ежемесячных процентов.");
-        System.out.println("5. Получить дату создания счета.");
-        System.out.println("6. Изменить идентификатор счета.");
-        System.out.println("7. Снять деньги со счета.");
-        System.out.println("8. Пополнить счет.");
-        System.out.println("9. Выйти в главное меню.");
+        System.out.println("2. Получить имя.");
+        System.out.println("3. Получить баланс счета.");
+        System.out.println("4. Получить годовую процентную ставку.");
+        System.out.println("5. Получить сумму ежемесячных процентов.");
+        System.out.println("6. Получить дату создания счета.");
+        System.out.println("7. Изменить идентификатор счета.");
+        System.out.println("8. Изменить имя.");
+        System.out.println("9. Снять деньги со счета.");
+        System.out.println("10. Пополнить счет.");
+        System.out.println("11. Выйти в главное меню.");
         while (true) {
-            int ChosenAccountOption = GetIntInput(1, 9, "Введите номер варианта: ");
+            int ChosenAccountOption = GetIntInput(1, 11, "Введите номер варианта: ");
             switch (ChosenAccountOption) {
                 case 1:
                     System.out.println("ID: " + SelectedAccount.GetID());
                     break;
                 case 2:
-                    System.out.println("Баланс: " +SelectedAccount.GetBalance());
-                    break;
+                    System.out.println("Имя: " + SelectedAccount.GetName());
                 case 3:
-                    System.out.println("Годовая процентная ставка: " + SelectedAccount.GetAnnualInterestRate());
+                    System.out.println("Баланс: " + SelectedAccount.GetBalance());
                     break;
                 case 4:
-                    System.out.println("Сумма ежемесячных процентов: " + SelectedAccount.GetMonthlyInterest());
+                    System.out.println("Годовая процентная ставка: " + SelectedAccount.GetAnnualInterestRate());
                     break;
                 case 5:
-                    System.out.println("Дата создания: " + SelectedAccount.GetDateCreated());
+                    System.out.println("Сумма ежемесячных процентов: " + SelectedAccount.GetMonthlyInterest());
                     break;
                 case 6:
+                    System.out.println("Дата создания: " + SelectedAccount.GetDateCreated());
+                    break;
+                case 7:
                     int ID = GetIntInputOnlyMin(0, "Введите Новый ID Счета: ");
                     if (AccountList.stream().anyMatch((Account CurrentAccount) -> CurrentAccount.GetID() == ID)) {
                         System.out.println("Ошибка: Этот ID Занят!");
@@ -97,17 +104,20 @@ public class ChosenOptionFunctions {
                         SelectedAccount.SetID(ID);
                     }
                     break;
-                case 7:
+                case 8:
+                    String Name = GetStringInput("Введите новое имя: ");
+                    SelectedAccount.SetName(Name);
+                case 9:
                     double SumToWithdraw = GetDoubleInputOnlyMin(0, "Введите сумму, которую хотите снять: ");
                     if (!SelectedAccount.Withdraw(SumToWithdraw)) {
                         System.out.println("Ошибка: Сумма слишком большая!");
                     }
                     break;
-                case 8:
+                case 10:
                     double SumToDeposit = GetDoubleInputOnlyMin(0, "Введите сумму, которую хотите положить: ");
                     SelectedAccount.Deposit(SumToDeposit);
                     break;
-                case 9:
+                case 11:
                     return;
             }
         }
