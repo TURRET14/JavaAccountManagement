@@ -68,7 +68,7 @@ public class Account {
         }
         else {
             Balance = Balance + Amount;
-            Transactions.add(new Transaction(false, Amount, Balance, "Начисление на счет"));
+            Transactions.add(new Transaction(false, Amount, Balance, "Зачисление на счет"));
             return true;
         }
     }

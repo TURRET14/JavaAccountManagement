@@ -85,6 +85,7 @@ public class ChosenOptionFunctions {
                     break;
                 case 2:
                     System.out.println("Имя: " + SelectedAccount.GetName());
+                    break;
                 case 3:
                     System.out.println("Баланс: " + SelectedAccount.GetBalance());
                     break;
@@ -109,6 +110,7 @@ public class ChosenOptionFunctions {
                 case 8:
                     String Name = GetStringInput("Введите новое имя: ");
                     SelectedAccount.SetName(Name);
+                    break;
                 case 9:
                     double SumToWithdraw = GetDoubleInputOnlyMin(0, "Введите сумму, которую хотите снять: ");
                     if (!SelectedAccount.Withdraw(SumToWithdraw)) {
@@ -139,6 +141,7 @@ public class ChosenOptionFunctions {
                             System.out.println("----------");
                         }
                     }
+                    break;
                 case 12:
                     return;
             }
