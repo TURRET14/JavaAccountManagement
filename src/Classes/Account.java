@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Account {
     private int ID = 0;
-    private String Name;
+    private String Name = new String();
     private double Balance = 0;
     private double AnnualInterestRate = 4.5;
     private Date DateCreated = new Date();
