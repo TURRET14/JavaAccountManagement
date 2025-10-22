@@ -124,7 +124,7 @@ public class ChosenOptionFunctions {
                 case 11:
                     ArrayList<Transaction> Transactions = SelectedAccount.GetTransactions();
                     for (int Count = 0; Count < Transactions.size(); Count = Count + 1) {
-                        System.out.println("Транзакция " + (Count + 1) + " :");
+                        System.out.println("Транзакция " + (Count + 1) + ":");
                         System.out.println("Дата: " + Transactions.get(Count).GetDate());
                         String Type;
                         if (Transactions.get(Count).GetIsWithdrawal()) {
